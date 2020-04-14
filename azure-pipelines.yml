@@ -17,4 +17,20 @@ steps:
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
-    tasks: 'build'
+    tasks: 'assembleDebug'
+
+- task: AndroidSigning@2
+  inputs:
+    apkFiles: '**/*.apk'
+    jarsignerKeystoreFile: 'test.jks'
+    jarsignerKeystorePassword: 'testbk'
+    jarsignerKeystoreAlias: 'testkey'
+    jarsignerKeyPassword: 'testbk'
+    jarsignerArguments: '-verbose'
+
+
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.apk'
+    targetFolder: '$(build.artifactStagingDirectory)'
+- task: PublishBuildArtifacts@1
