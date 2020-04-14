@@ -19,14 +19,7 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
 
-- task: AndroidSigning@2
-  inputs:
-    apkFiles: '**/*.apk'
-    jarsignerKeystoreFile: 'demo.jks'
-    jarsignerKeystorePassword: 'demobk'
-    jarsignerKeystoreAlias: 'DKey'
-    jarsignerKeyPassword: 'demobk'
-    jarsignerArguments: '-verbose'
+
 
 
 - task: CopyFiles@2
